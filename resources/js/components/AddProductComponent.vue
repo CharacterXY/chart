@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-default">
                     <div class="card-header">Example Component</div>
 
-                    <div class="card-body">     
+                    <div class="card-body">
                         <form @submit.prevent="createProduct">
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -13,14 +13,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="year">Year</label>
-                                <input  v-model="product.year" type="number" id="year" class="form-control">
+                                <input v-model="product.year" type="number" id="year" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input v-model="product.price" type="number" id="price" class="form-control">
                             </div>
-                                <button class="btn btn-primary">Submit</button>
-                        </form> 
+
+                            <div class="form-group">
+                                <button class="btn btn-primary">Create Product</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -36,20 +39,16 @@
             }
         },
         mounted() {
-            console.log('Uspjesno loadano.')
+            console.log('Product Component mounted.')
         },
-        methods : {
-          
-          createProduct(){
-              let url = 'https://127.0.0.1:8000/products';
 
-              axios.post(url, this.product).then((response) => {
-                     window.location.reload();
-              });
-              console.log(this.product);
-          }
+        methods: {
+            createProduct(){
+                let uri = 'http://chart.local/products';
+                axios.post(uri, this.product).then((response) => {
+                    window.location.reload();
+                });
+            }
         }
-
     }
-
 </script>
